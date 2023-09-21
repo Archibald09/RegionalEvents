@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MyEventsController!{% endblock %}
+
+{% block body %}
+
+<div class="container my-5">
+
+    <h2 class="text-center text-white bg-dark title mx-auto">Mes évènements</h2>
+
+        <table class="table table-stripperv col-md-6">
+            <tr class="text-center">
+
+                {% for row in colonnesSansId %}
+
+                    <th> {{ row|upper }}</th>
+
+                {% endfor %}
+
+                <th>ACTION</th>
+                <th></th>
+            </tr>
+
+            {{ form_start(form) }}
+            {{ form_row(form.date_debut) }}
+            {{ form_row(form.date_fin) }}
+            <button type="submit">Filtrer</button>
+            {{ form_end(form) }}
+            
+            {% for e in events %}
+
+                <tr class="text-center">
+                    <td class="align-middle">{{ e.titre }}</td>
+                    <td class="align-middle">{{ e.description }}</td>
+                    <td class="align-middle">{{ e.dateDebut|date('d-m-Y H:i') }}</td>
+                    <td class="align-middle">{{ e.dateFin|date('d-m-Y H:i') }}</td>
+                    <td class="align-middle">{{ e.lieu }}</td>
+                    <td class="align-middle">
+                        <a href="{{ path ('app_events_edit', {'id' : e.id} ) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a onclick="return(confirm('Voulez-vous vraiment supprimer cet évènement ?'))" href="{{ path ('app_events_delete', {'id' : e.id} ) }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}    
+                            
+            
+        
+        </table>
+</div>
+{% endblock %}

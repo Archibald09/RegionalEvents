@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modifier votre évènement {% endblock %}
+
+
+
+{% block body %}
+
+    <div class="container my-5">
+
+            <div class="row justify-content-center my-5">
+
+                     {{ form_start(form,  {'attr' : { 'class' : 'col-lg-5 col-md-5 mx-auto py-5'}} ) }}
+
+                        {{ form_row(form.titre, {'attr' : { 'placeholder' : 'Titre', "maxlength" : false, "pattern" : false}, 'label' : "Nom du produit" })}}
+                        {{ form_row(form.description, { 'label' : "Description"}, {'attr' : { 'rows' : 12}})}}
+                        {{ form_row(form.date_debut, {'label' : "Date et heure de début"})}}
+                        {{ form_row(form.date_fin, { 'label' : "Date et heure de fin"}, {'attr' : { 'rows' : 12}})}}
+                        {{ form_row(form.lieu, { 'label' : "Lieu"}, {'attr' : { 'rows' : 12}})}}
+
+                       <button type="submit" class="btn btn-success">Modifier l'évènement</button>
+                  
+                    {{ form_end(form) }}    
+
+            </div>
+
+
+    </div>
+
+
+{% endblock %}

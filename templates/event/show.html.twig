@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %} L'évènement {{ event.titre}} {% endblock %}
+
+
+{% block body %}
+
+<div class="container py-5">
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title fw-bolder fs-2">{{ event.titre }}</h5>
+            <p class="card-text">
+                {{ event.description }}
+            </p>
+            <h3 class="text-center fw-bold"> Date de début : {{ event.dateDebut|date('d-m-Y H:i') }} </h3>
+            <h3 class="text-center fw-bold"> Date de fin : {{ event.dateFin|date('d-m-Y H:i') }} </h3>
+            <h3 class="text-center fw-bold"> Lieu : {{ event.lieu }} </h3>
+            <div class="row justify-content-center">
+                <a href="{{ path('app_home') }}" class="btn btn-light col-3">RETOUR</a>
+            </div>
+
+        </div>
+    </div>  
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos évènements{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+        <h2 class="text-center text-white bg-dark title mx-auto">Tous nos évènements</h2>
+
+            <table class="table table-stripperv col-md-6">
+                <tr class="text-center">
+
+                    {% for row in colonnesSansId %}
+
+                        <th> {{ row|upper }}</th>
+
+                    {% endfor %}
+
+                    <th>S'INSCRIRE</th>
+                    <th></th>
+                </tr>
+
+                {{ form_start(form) }}
+                {{ form_row(form.date_debut) }}
+                {{ form_row(form.date_fin) }}
+                <button type="submit">Filtrer</button>
+                {{ form_end(form) }}
+                
+                    {% for e in events %}
+
+                        <tr class="text-center">
+                            <td class="align-middle">{{ e.titre }}</td>
+                            <td class="align-middle">{{ e.description }}</td>
+                            <td class="align-middle">{{ e.dateDebut|date('d-m-Y H:i') }}</td>
+                            <td class="align-middle">{{ e.dateFin|date('d-m-Y H:i') }}</td>
+                            <td class="align-middle">{{ e.lieu }}</td>
+                            <td class="align-middle">
+                                <a href="{{ path ('app_show', {'id' : e.id} ) }}" class="btn btn-sm btn-info"><i class="fa-solid fa-eye"></i></a>
+                                {% if app.user %}
+                                    <a href="{{ path ('app_subscribe') }}" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-right"></i>S'INSCRIRE</a>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+                                
+                
+            
+            </table>
+    </div>
+
+{% endblock %}
