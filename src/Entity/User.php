@@ -75,16 +75,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         message : 'Les mots de passes ne correspondent pas',
         groups : ['registration']
     )]
-    
-    #[Assert\Regex(
-        pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).+$/', 
-        message: "Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"
-    )]
 
     #[Assert\Length(
         min : '8', 
         minMessage : 'Le mot de passe doit contenir au moins 8 caractères',
         groups : ['registration']
+    )]
+
+    #[Assert\Regex(
+        pattern : '/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[\S]+$/',
+        message : 'Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.'
     )]
 
     #[Assert\NotBlank(

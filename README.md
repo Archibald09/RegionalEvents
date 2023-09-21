@@ -56,4 +56,6 @@
 
 - J'ai rencotré des problèmes avec mon projet et Github et je n'ai que peu de commit à mon projet.
 
+- Le mot de passe ne prend pas en compte l'instruction du Regex pour imposer une majuscule, un chiffre et un caractère spécial.
+
 
